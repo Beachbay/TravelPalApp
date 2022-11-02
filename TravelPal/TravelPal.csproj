@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\info-solid.png" />
+    <None Remove="Images\plus-solid.png" />
+    <None Remove="Images\trash-can-solid.png" />
+    <None Remove="user-regular.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\info-solid.png" />
+    <Resource Include="Images\plus-solid.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\trash-can-solid.png" />
+    <Resource Include="Images\user-regular.png" />
+  </ItemGroup>
+
+</Project>

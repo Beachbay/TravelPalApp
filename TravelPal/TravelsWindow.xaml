@@ -1,0 +1,168 @@
+﻿<Window x:Class="TravelPal.TravelsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPal"
+        mc:Ignorable="d"
+        Title="TravelsWindow" Height="450" Width="850" FontFamily="Arial">
+    <Grid Background="MediumSlateBlue" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label
+            Content="Welcome "
+            Grid.ColumnSpan="2"
+            Background="MintCream"
+            FontSize="40"
+            VerticalContentAlignment="Center"
+            Margin="10"
+        />
+        <Label
+            x:Name="lblUserName"
+            Grid.ColumnSpan="2"
+            FontSize="40"
+            VerticalContentAlignment="Center"            
+            Grid.Column="1"
+        />
+        <ListView
+            x:Name="lvTravels"
+            Grid.Row="1"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="4"
+            Margin="20"
+            Background="MintCream"/>
+        <!--<Button
+            Content="USER"
+            VerticalContentAlignment="Top"
+            Padding="0,20,0,0"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            Margin="20" Background="#FFBAB3E3">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Image Source="/user-regular.png" Height="30" Width="30"/>
+            
+
+        </Button>-->
+
+        <Button
+            x:Name="btnUser"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            Margin="20" 
+            Background="#FFBAB3E3" Click="btnUser_Click">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="/Images/user-regular.png" Height="30" Width="30"/>
+                <Label Grid.Row="1" Content="USER"/>
+            </Grid>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button
+            x:Name="BtnAddTravel"
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            Margin="20" 
+            Background="#FFBAB3E3" Click="BtnAddTravel_Click">
+
+        <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="/Images/plus-solid.png" Height="30" Width="30"/>
+                <Label Grid.Row="1" Content="ADD TRAVEL"/>
+            </Grid>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button
+            x:Name="BtnDetails"
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            Margin="20" 
+            Background="#FFBAB3E3" Click="BtnDetails_Click" 
+            >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="/images/info-solid.png" Height="30" Width="30"/>
+                <Label Grid.Row="1" Content="DETAILS"/>
+                
+            </Grid>
+        </Button>
+        <Button
+            x:Name="btnRemove"
+            Grid.Row="3"
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            Margin="20" 
+            Background="#FFBAB3E3" Click="btnRemove_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="/images/trash-can-solid.png" Height="30" Width="30"/>
+                <Label Grid.Row="1" Content="REMOVE"/>
+
+            </Grid>
+        </Button>
+        <Button
+            x:Name="btnSignOut"
+            Grid.Column="3"
+            Margin="25"
+            Content="Sign Out"
+            Background="#FFBAB3E3" Click="btnSignOut_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+    </Grid>
+</Window>
