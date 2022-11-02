@@ -29,4 +29,9 @@ public class Travel
     {
         return "TravelType";
     }
+
+    public virtual string GetTravelInfo()
+    {
+        return "TravelInfo";
+    }
 }

@@ -80,11 +80,7 @@ namespace TravelPal
 
             lvTravels.Items.Clear();
 
-            //txtUserName.Text = this.user.UserName;
-
             
-            
-
         }
 
         private void UpdateTravelsList()
@@ -169,14 +165,22 @@ namespace TravelPal
                     signedInUser.Travels.Remove(selectedTravel);
 
                     userManager.SignedInUser = signedInUser;
+
+                    
                 }
 
                 UpdateUI();
+                UpdateTravelsList();
             }
             else
             {
                 MessageBox.Show("Please select a travel first!");
             }
+        }
+
+        private void btnInfo_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This is a app created for planing and keeping track of your trvels.", "Iformation");
         }
     }
 }

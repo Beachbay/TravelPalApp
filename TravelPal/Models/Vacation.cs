@@ -9,20 +9,32 @@ namespace TravelPal.Models;
 
 public class Vacation : Travel
 {
-	public bool AllInclusive { get; set; }
+    public bool AllInclusive { get; set; }
 
     public Vacation(bool allInclusive, string destination, Countries country, int travellers) : base(destination, country, travellers)
     {
-		AllInclusive = AllInclusive;
+        AllInclusive = AllInclusive;
     }
 
     public string GetInfo()
-	{
-		return base.GetInfo();
-	}
+    {
+        return base.GetInfo();
+    }
 
     public override string GetTravelType()
     {
         return "Vacation";
+    }
+
+    public override string GetTravelInfo()
+    {
+        if (AllInclusive)
+        {
+            return $"Have AllInclusive";
+        }
+        else
+        {
+            return "Doesn't have AllInculsive";
+        }
     }
 }

@@ -57,5 +57,10 @@ public class TravelManager
                 }
             }
         }
+        if(foundTravel != null)
+        {
+            AllTravels.Remove(foundTravel);
+        }
+
     }
 }

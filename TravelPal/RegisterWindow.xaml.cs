@@ -43,11 +43,19 @@ public partial class RegisterWindow : Window
         string country = cbCountry.SelectedItem as string;
         try
         {
-            if (country.Count() == 0 || username.Count() == 0 || password.Count() == 0)
+            if (country.Count() == 0)
             {
 
-                MessageBox.Show("Not all fields have an input", "Information");
+                MessageBox.Show("Enter a country", "Information");
 
+            }
+            else if (username.Count() < 3)
+            {
+                tblUsername.Visibility = Visibility.Visible;
+            }
+            else if (password.Count() < 3)
+            {
+                tblPassword.Visibility = Visibility.Visible;
             }
             else
             {
@@ -64,7 +72,7 @@ public partial class RegisterWindow : Window
         }
         catch(Exception ex)
         {
-            MessageBox.Show("Not all fields have an input", "Information");
+            MessageBox.Show("Please enter all fields", "Information");
         }
         
 

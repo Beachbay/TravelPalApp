@@ -36,15 +36,15 @@ public partial class TravelDetailsWindow : Window
         this.travelManager = travelManager;
         this.travel = travel;
 
-        if(travel is Trip)
+        if (travel is Trip)
         {
             Trip trip = travel as Trip;
 
             lblSpecial.Content = $"{trip.Type}";
         }
-        else if(travel is Vacation)
+        else if (travel is Vacation)
         {
-           
+
 
             Vacation vacation = travel as Vacation;
 
@@ -66,6 +66,7 @@ public partial class TravelDetailsWindow : Window
         lblCountry.Content = travel.Country;
         lblTravelers.Content = travel.Travellers;
         lblTripOrVac.Content = travel.GetTravelType();
+        
     }
 
     private void BtnBack_Click(object sender, RoutedEventArgs e)

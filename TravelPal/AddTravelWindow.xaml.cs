@@ -56,25 +56,52 @@ public partial class AddTravelWindow : Window
 
     private void BtnAdd_Click(object sender, RoutedEventArgs e)
     {
-        string destination = txtDestination.Text;
-        string country = cbCountry.SelectedItem as string; 
-        Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
-
-        string travellersString = cbTravelers.SelectedItem as string;
-
-        int travellersInt = int.Parse(travellersString);
-
-        string tripOrVacation = cbTripOrVacation.SelectedItem as string;
-
-        if (tripOrVacation == "Trip")
+        try
         {
-            string tripType = cbTripType.SelectedItem as string;
+            string destination = txtDestination.Text;
+            string country = cbCountry.SelectedItem as string;
+            Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
 
-            if(tripType == "Work")
+            string travellersString = cbTravelers.SelectedItem as string;
+
+            int travellersInt = int.Parse(travellersString);
+
+            string tripOrVacation = cbTripOrVacation.SelectedItem as string;
+
+            if (tripOrVacation == "Trip")
             {
-                TripTypes selectedType = (TripTypes)Enum.Parse(typeof(TripTypes), tripType);
+                string tripType = cbTripType.SelectedItem as string;
 
-                Travel newTravel = this.travelManager.CreateTravel(travellersInt, selectedCountry, destination, selectedType);
+                if (tripType == "Work")
+                {
+                    TripTypes selectedType = (TripTypes)Enum.Parse(typeof(TripTypes), tripType);
+
+                    Travel newTravel = this.travelManager.CreateTravel(travellersInt, selectedCountry, destination, selectedType);
+
+                    User user = userManager.SignedInUser as User;
+
+                    user.Travels.Add(newTravel);
+
+                    userManager.SignedInUser = user;
+                }
+                else if (tripType == "Leisure")
+                {
+                    TripTypes selectedType = (TripTypes)Enum.Parse(typeof(TripTypes), tripType);
+
+                    Travel newTravel = travelManager.CreateTravel(travellersInt, selectedCountry, destination, selectedType);
+
+                    User user = userManager.SignedInUser as User;
+
+                    user.Travels.Add(newTravel);
+
+                    userManager.SignedInUser = user;
+                }
+            }
+            else if (tripOrVacation == "Vacation")
+            {
+                bool allInclusive = (bool)chbAllInclusive.IsChecked;
+
+                Travel newTravel = travelManager.CreateTravel(travellersInt, selectedCountry, destination, allInclusive);
 
                 User user = userManager.SignedInUser as User;
 
@@ -82,40 +109,20 @@ public partial class AddTravelWindow : Window
 
                 userManager.SignedInUser = user;
             }
-            else if(tripType == "Leisure")
-            {
-                TripTypes selectedType = (TripTypes)Enum.Parse(typeof(TripTypes), tripType);
 
-                Travel newTravel = travelManager.CreateTravel(travellersInt, selectedCountry, destination, selectedType);
+            // Öppna travelswindow igen
+            TravelsWindow travelsWindow = new(userManager, travelManager);
 
-                User user = userManager.SignedInUser as User;
+            travelsWindow.Show();
 
-                user.Travels.Add(newTravel);
 
-                userManager.SignedInUser = user;
-            }
+
+            Close();
         }
-        else if(tripOrVacation == "Vacation")
+        catch
         {
-            bool allInclusive = (bool)chbAllInclusive.IsChecked;
-
-            Travel newTravel = travelManager.CreateTravel(travellersInt, selectedCountry, destination, allInclusive);
-
-            User user = userManager.SignedInUser as User;
-
-            user.Travels.Add(newTravel);
-
-            userManager.SignedInUser = user;
+            MessageBox.Show("Something went wrong", "Oops!");
         }
-
-        // Öppna travelswindow igen
-        TravelsWindow travelsWindow = new(userManager, travelManager);
-
-        travelsWindow.Show();
-
-        
-
-        Close();
     }
 
     private void cbTripOrVacation_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -163,6 +163,18 @@
                 </Style>
             </Button.Resources>
         </Button>
+        <Button
+            x:Name="btnInfo"
+            Grid.Column="2"
+            Margin="25"
+            Content="Info"
+            Background="#FFBAB3E3" Click="btnInfo_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
     </Grid>
 </Window>

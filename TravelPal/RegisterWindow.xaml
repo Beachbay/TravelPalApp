@@ -92,7 +92,28 @@
             Height="40"
             Width="160"
             HorizontalAlignment="Left"
-            Background="MintCream" SelectionChanged="cbCountry_SelectionChanged"/>
+            Background="MintCream" 
+            SelectionChanged="cbCountry_SelectionChanged"/>
+        <TextBlock
+            x:Name="tblUsername"
+            Grid.Row="2"
+            Grid.Column="3"
+            Text="Username must have atleast 3 characters"
+            FontSize="15"
+            TextWrapping="Wrap"
+            Margin="10"
+            Foreground="#FFBAB3E3"
+            Visibility="Hidden"/>
+        <TextBlock
+            x:Name="tblPassword"
+            Grid.Row="3"
+            Grid.Column="3"
+            Text="Password must have atleast 3 characters"
+            FontSize="15"
+            TextWrapping="Wrap"
+            Margin="10"
+            Foreground="#FFBAB3E3"
+            Visibility="Hidden"/>
     </Grid>
     
 </Window>
