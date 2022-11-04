@@ -44,39 +44,54 @@ public partial class UserDetailsWindow : Window
     private void btnSave_Click(object sender, RoutedEventArgs e)
     {
 
-        string newUsername = tbNewUsername.Text;
-        string newPassword = pswNewPassword.Password;
-        string confirmNewPassword = pswConfirmPassword.Password;
-        
-        string selectedItem = cbNewCountry.Text;
-        Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), selectedItem);
-        userManager.SignedInUser.Location = selectedCountry;
-        
-
-        if(this.userManager.UpdateUsername(user, newUsername))
+        try
         {
-            userManager.SignedInUser.Username = newUsername;
- 
-        }
-
-        if(newPassword == confirmNewPassword)
-        {
-            if (this.userManager.UpdatePassword(user, newPassword))
+            if (tbNewUsername == null || pswNewPassword == null || pswConfirmPassword == null || cbNewCountry == null)
             {
-                userManager.SignedInUser.Password = newPassword;
-  
+                MessageBox.Show("Please enter all fields");
+            }
+            else
+            {
+                string newUsername = tbNewUsername.Text;
+                string newPassword = pswNewPassword.Password;
+                string confirmNewPassword = pswConfirmPassword.Password;
+
+                string selectedItem = cbNewCountry.Text;
+                Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), selectedItem);
+                userManager.SignedInUser.Location = selectedCountry;
+
+
+                if (this.userManager.UpdateUsername(user, newUsername))
+                {
+                    userManager.SignedInUser.Username = newUsername;
+
+                }
+
+                if (newPassword == confirmNewPassword)
+                {
+                    if (this.userManager.UpdatePassword(user, newPassword))
+                    {
+                        userManager.SignedInUser.Password = newPassword;
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Password did not match");
+                }
+
+                TravelsWindow travelsWindow = new(userManager, travelManager);
+
+                travelsWindow.Show();
+
+                Close();
             }
         }
-        else
+        catch(Exception ex)
         {
-            MessageBox.Show("Password did not match");
+            MessageBox.Show("Please enetr all fields");
         }
-
-        TravelsWindow travelsWindow = new(userManager, travelManager);
-
-        travelsWindow.Show();
-
-        Close();
+        
 
     }
 

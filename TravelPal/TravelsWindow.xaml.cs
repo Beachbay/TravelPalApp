@@ -39,6 +39,9 @@ namespace TravelPal
             }
             else if (this.userManager.SignedInUser is Admin)
             {
+                BtnAddTravel.IsEnabled = false;
+                btnUser.IsEnabled = false;
+
                 foreach(var travel in travelManager.AllTravels)
                 {
                     ListViewItem item = new();
@@ -72,22 +75,17 @@ namespace TravelPal
             }
         }
 
+        // Printa använderens username i Travelswindow
         private void UpdateUI()
         {
             lblUserName.Content = this.userManager.SignedInUser.Username;
 
         }
 
-        private void UpdateTravelsListAdmin()
-        {
-
-            
-        }
+       // Printa användarens resor i en listview
         private void UpdateTravelsList()
         {
             User signedInUser = this.userManager.SignedInUser as User;
-
-            
 
             if (this.userManager.SignedInUser is User)
             {
@@ -101,7 +99,6 @@ namespace TravelPal
                     lvTravels.Items.Add(item);
                 }
             }   
-
         }
 
         private void BtnAddTravel_Click(object sender, RoutedEventArgs e)
@@ -126,12 +123,8 @@ namespace TravelPal
             }
             else if (listViewItem != null)
             {
-                //TravelDetailsWindow.Show();
-                MessageBox.Show("Please select a destination");
-                
-            }
-
-            
+                MessageBox.Show("Please select a destination");   
+            }    
         }
 
         private void btnUser_Click(object sender, RoutedEventArgs e)
@@ -184,10 +177,6 @@ namespace TravelPal
                 MessageBox.Show("You need to pick a travel");
             }
             UpdateTravelsList();
-
-
-            
-
         }
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)

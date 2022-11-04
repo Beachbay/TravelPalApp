@@ -77,7 +77,7 @@ public partial class AddTravelWindow : Window
                 {
                     TripTypes selectedType = (TripTypes)Enum.Parse(typeof(TripTypes), tripType);
 
-                    Travel newTravel = this.travelManager.CreateTravel(travellersInt, selectedCountry, destination, selectedType);
+                    Travel newTravel = travelManager.CreateTravel(travellersInt, selectedCountry, destination, selectedType);
 
                     User user = userManager.SignedInUser as User;
 
@@ -105,10 +105,13 @@ public partial class AddTravelWindow : Window
                 Travel newTravel = travelManager.CreateTravel(travellersInt, selectedCountry, destination, allInclusive);
 
                 User user = userManager.SignedInUser as User;
+                
 
                 user.Travels.Add(newTravel);
 
                 userManager.SignedInUser = user;
+
+                
             }
 
             // Öppna travelswindow igen

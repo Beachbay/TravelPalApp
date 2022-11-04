@@ -20,6 +20,7 @@ public class Travel
         Travellers = travellers;
     }
 
+    //Skicka en sträng till listview
     public virtual string GetInfo()
     {
         return $"{Destination} / {Country}";

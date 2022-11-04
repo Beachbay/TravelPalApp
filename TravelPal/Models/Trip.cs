@@ -17,11 +17,13 @@ public class Trip : Travel
         Type = tripType;
     }
 
+    // Skicka en sträng med info
     public string GetInfo()
 	{
         return base.GetInfo();
 	}
 
+    // Hämtar att traveltype är en trip
     public override string GetTravelType()
     {
         return "Trip";

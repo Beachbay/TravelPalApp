@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ public partial class RegisterWindow : Window
     private UserManager userManager;
     private TravelManager travelManager;
 
-    public RegisterWindow(UserManager userManager)
+    public RegisterWindow(UserManager userManager, TravelManager travelManager)
     {
         InitializeComponent();
         string [] getAllCountries = Enum.GetNames(typeof(Countries));
@@ -31,7 +32,7 @@ public partial class RegisterWindow : Window
         cbCountry.ItemsSource = getAllCountries;
 
         this.userManager = userManager;
-
+        this.travelManager = travelManager;
         
 
     }
@@ -56,6 +57,10 @@ public partial class RegisterWindow : Window
             else if (password.Count() < 3)
             {
                 tblPassword.Visibility = Visibility.Visible;
+            }
+            else if(txtConfirmPassword.Password != txtPassword.Password)
+            {
+                MessageBox.Show("Password did not match", "Warning");
             }
             else
             {

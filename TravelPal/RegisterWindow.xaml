@@ -52,7 +52,7 @@
             Background="MintCream"
             Width="105"/>
         <Label
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="1"
             Content="Country:"
             FontSize="20"
@@ -76,7 +76,7 @@
             Height="40"
             Width="160"
             HorizontalAlignment="Left"/>
-        <Button x:Name="btnRegister" Content="Register"  FontSize="15" Grid.Column="1" Grid.Row="5" Height="45"  Width="160" Background="MintCream" HorizontalAlignment="Left" Click="btnRegister_Click">
+        <Button x:Name="btnRegister" Content="Register"  FontSize="15" Grid.Column="1" Grid.Row="6" Height="45"  Width="160" Background="MintCream" HorizontalAlignment="Left" Click="btnRegister_Click">
 
             <Button.Resources>
                 <Style TargetType="Border">
@@ -88,7 +88,7 @@
                 Content="Back"  
                 FontSize="15" 
                 Grid.Column="2" 
-                Grid.Row="5" 
+                Grid.Row="6" 
                 Height="45"  
                 Width="160" 
                 Background="MintCream" 
@@ -103,7 +103,7 @@
        
         <ComboBox
             x:Name="cbCountry"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="2"
             Height="40"
             Width="160"
@@ -129,7 +129,25 @@
             TextWrapping="Wrap"
             Margin="10"
             Foreground="#FFBAB3E3"
-            Visibility="Hidden"/>
+            Visibility="Hidden"
+            />
+        <Label
+            Grid.Row="4"
+            Grid.Column="1"
+            Content="Confrim Password:"
+            FontSize="20"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Background="MintCream"
+            Width="180"/>
+        <PasswordBox
+            x:Name="txtConfirmPassword"
+            Grid.Row="4"
+            Grid.Column="2"
+            Background="MintCream"
+            Height="40"
+            Width="160"
+            HorizontalAlignment="Left"/>
     </Grid>
     
 </Window>

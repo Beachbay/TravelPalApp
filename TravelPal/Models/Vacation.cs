@@ -16,21 +16,24 @@ public class Vacation : Travel
         AllInclusive = allInclusive;
     }
 
+    // Skicka en sträng med info
     public string GetInfo()
     {
         return base.GetInfo();
     }
 
+    // Hämtar att traveltype är en vaccation
     public override string GetTravelType()
     {
         return "Vacation";
     }
 
+    // Returnar till label i traveldetails om det är aic 
     public override string GetTravelInfo()
     {
         if (AllInclusive)
         {
-            return $"Have AllInclusive";
+            return $"Has AllInclusive";
         }
         else
         {

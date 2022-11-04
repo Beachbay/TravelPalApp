@@ -13,5 +13,4 @@ public interface IUser
     public string Password { get; set; }
     public Countries Location { get; set; }
 
-  
 }

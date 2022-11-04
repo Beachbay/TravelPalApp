@@ -22,6 +22,7 @@ public class UserManager
         Admin admin = new("Admin", "password", Enums.Countries.Greece);
         users.Add(admin);
 
+
         User user = new("Gandalf", "password", Enums.Countries.Sweden);
         users.Add(user);
         
@@ -36,6 +37,7 @@ public class UserManager
         return users;
     }
 
+    // Skapar en ny User
     public bool AddUser(string username, string password, Countries country)
     {
         if(ValidateUsername(username))
@@ -53,11 +55,8 @@ public class UserManager
         }
     }
 
-    public void RemoveUser()
-    {
-
-    }
-
+    
+    // Uppdaterar användarnamn
     public bool UpdateUsername(IUser user, string username)
     {
         if(username.Length < 3 || username == null)
@@ -70,9 +69,10 @@ public class UserManager
 
     }
 
+    // Uppdaterar lösenord
     public bool UpdatePassword(IUser user, string password)
     {
-        if (password.Length < 3 || password == null)
+        if (password.Length < 5 || password == null)
         {
             MessageBox.Show("To short");
             return false;
@@ -81,6 +81,7 @@ public class UserManager
         return true;
     }
 
+    // Ser till så att man inte kan skapa två användare med samma username
     private bool ValidateUsername(string username)
     {
         foreach (IUser user in users)
@@ -91,12 +92,10 @@ public class UserManager
                 return false;
 
             }
-
-
         }
         return true;
-
     }
+    // Logga in en användare
     public bool SignInUser(string username, string password)
     {
         foreach (IUser user in users)

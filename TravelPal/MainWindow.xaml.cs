@@ -30,7 +30,9 @@ namespace TravelPal
         {
             InitializeComponent();
 
-            this.userManager = new();
+            
+
+                this.userManager = new();
             this.travelManager = new();
 
             foreach (IUser user in this.userManager.GetAllUsers())
@@ -54,7 +56,7 @@ namespace TravelPal
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow registerWindow = new(userManager);
+            RegisterWindow registerWindow = new(userManager, travelManager);
 
             registerWindow.Show();
 

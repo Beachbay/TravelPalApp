@@ -60,6 +60,8 @@ public partial class TravelDetailsWindow : Window
 
         UpdateDetails();
     }
+
+    //Sätter nya värden till userdetails
     private void UpdateDetails()
     {
         lblDestiantion.Content = travel.Destination;
