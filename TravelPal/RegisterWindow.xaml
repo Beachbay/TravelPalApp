@@ -84,6 +84,22 @@
                 </Style>
             </Button.Resources>
         </Button>
+        <Button x:Name="btnBack" 
+                Content="Back"  
+                FontSize="15" 
+                Grid.Column="2" 
+                Grid.Row="5" 
+                Height="45"  
+                Width="160" 
+                Background="MintCream" 
+                HorizontalAlignment="Left" Click="btnBack_Click">
+
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
        
         <ComboBox
             x:Name="cbCountry"

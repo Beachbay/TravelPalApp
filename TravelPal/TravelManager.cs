@@ -57,7 +57,7 @@ public class TravelManager
                 }
             }
         }
-        if(foundTravel != null)
+        if (foundTravel != null)
         {
             AllTravels.Remove(foundTravel);
         }

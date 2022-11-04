@@ -24,9 +24,10 @@ public partial class AddTravelWindow : Window
     private UserManager userManager;
     private TravelManager travelManager;
     private string selectedTravelType;
+    private User user;
+    public List<Travel> AllTravels = new();
 
-
-    private int[] numberOfTravellers = new[] { 1, 2, 4, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+    private int[] numberOfTravellers = new[] { 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 
 
     public AddTravelWindow(UserManager userManager, TravelManager travelManager)
@@ -119,7 +120,7 @@ public partial class AddTravelWindow : Window
 
             Close();
         }
-        catch
+        catch(NullReferenceException)
         {
             MessageBox.Show("Something went wrong", "Oops!");
         }

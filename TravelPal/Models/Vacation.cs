@@ -13,7 +13,7 @@ public class Vacation : Travel
 
     public Vacation(bool allInclusive, string destination, Countries country, int travellers) : base(destination, country, travellers)
     {
-        AllInclusive = AllInclusive;
+        AllInclusive = allInclusive;
     }
 
     public string GetInfo()

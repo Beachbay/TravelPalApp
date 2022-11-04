@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TravelPal.Interface;
+using TravelPal.Models;
 
 namespace TravelPal
 {
@@ -30,6 +31,17 @@ namespace TravelPal
             InitializeComponent();
 
             this.userManager = new();
+            this.travelManager = new();
+
+            foreach (IUser user in this.userManager.GetAllUsers())
+            {
+                if (user is User)
+                {
+                    User u = user as User;
+
+                    this.travelManager.AllTravels.AddRange(u.Travels);
+                }
+            }
         }
 
         public MainWindow(UserManager userManager, TravelManager travelManager)
@@ -58,7 +70,7 @@ namespace TravelPal
 
             if(userManager.SignInUser(username, password))
             {
-                TravelsWindow travelsWindow = new(userManager);
+                TravelsWindow travelsWindow = new(userManager, travelManager);
 
                 travelsWindow.Show();
                 Close();

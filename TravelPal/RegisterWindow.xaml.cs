@@ -61,13 +61,22 @@ public partial class RegisterWindow : Window
             {
                 Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
 
-                this.userManager.AddUser(username, password, selectedCountry);
 
-                MainWindow mainWindow = new(userManager, travelManager);
+                bool isSuccessfullyCreatedUser = this.userManager.AddUser(username, password, selectedCountry);
 
-                mainWindow.Show();
+                if(isSuccessfullyCreatedUser)
+                {
+                    MainWindow mainWindow = new(userManager, travelManager);
 
-                Close();
+                    mainWindow.Show();
+
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Username is already taken");
+                }
+
             }
         }
         catch(Exception ex)
@@ -81,5 +90,13 @@ public partial class RegisterWindow : Window
     private void cbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
+    }
+
+    private void btnBack_Click(object sender, RoutedEventArgs e)
+    {
+        MainWindow mainWindow = new(userManager, travelManager);
+
+        mainWindow.Show();
+        Close();
     }
 }

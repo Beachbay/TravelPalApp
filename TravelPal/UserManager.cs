@@ -28,7 +28,7 @@ public class UserManager
         Vacation travel1 = new(true, "Mount Doom", Enums.Countries.Mordor, 1);
         user.Travels.Add(travel1);
        
-        Trip travel2 = new(Enums.TripTypes.Leisure, "Mormor", Enums.Countries.Ghana, 2);
+        Trip travel2 = new(Enums.TripTypes.Leisure, "Mormor", Enums.Countries.Denmark, 2);
         user.Travels.Add(travel2);
     }
     public List<IUser> GetAllUsers()

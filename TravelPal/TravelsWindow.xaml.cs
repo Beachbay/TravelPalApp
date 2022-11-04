@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TravelPal.Interface;
 using TravelPal.Models;
 
 namespace TravelPal
@@ -25,30 +26,30 @@ namespace TravelPal
         private TravelManager travelManager;
         private User user;
 
-        public TravelsWindow(UserManager userManager)
-        {
-            InitializeComponent();
-            this.userManager = userManager;
-            this.travelManager = new();
-
-            UpdateUI();
-
-            UpdateTravelsList();
-
-            
-        }
-
         public TravelsWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
             this.userManager = userManager;
             this.travelManager = travelManager;
-
             UpdateUI();
 
-
-            DisplayTravels();
+            if (this.userManager.SignedInUser is User)
+            {
+                UpdateTravelsList();
+            }
+            else if (this.userManager.SignedInUser is Admin)
+            {
+                foreach(var travel in travelManager.AllTravels)
+                {
+                    ListViewItem item = new();
+                    item.Content = travel.GetInfo();
+                    item.Tag = travel;
+                    lvTravels.Items.Add(item);
+                }
+            }
         }
+
+       
 
         private void DisplayTravels()
         {
@@ -75,20 +76,22 @@ namespace TravelPal
         {
             lblUserName.Content = this.userManager.SignedInUser.Username;
 
-            
-            // Uppdatera Ui
+        }
 
-            lvTravels.Items.Clear();
+        private void UpdateTravelsListAdmin()
+        {
 
             
         }
-
         private void UpdateTravelsList()
         {
+            User signedInUser = this.userManager.SignedInUser as User;
+
+            
+
             if (this.userManager.SignedInUser is User)
             {
-                User signedInUser = this.userManager.SignedInUser as User;
-
+                lvTravels.Items.Clear();
                 foreach (var travel in signedInUser.Travels)
                 {
                     ListViewItem item = new();
@@ -97,7 +100,8 @@ namespace TravelPal
 
                     lvTravels.Items.Add(item);
                 }
-            }
+            }   
+
         }
 
         private void BtnAddTravel_Click(object sender, RoutedEventArgs e)
@@ -151,31 +155,39 @@ namespace TravelPal
         {
             ListViewItem selectedItem = lvTravels.SelectedItem as ListViewItem;
 
+            lvTravels.Items.Remove(selectedItem);
+
             if (selectedItem != null)
             {
+                // Ta bort resa från listView
+
                 Travel selectedTravel = selectedItem.Tag as Travel;
 
-                // Ta Bort Resan
-                travelManager.RemoveTravel(selectedTravel);
-
-                if (userManager.SignedInUser is User)
+                foreach (IUser user in userManager.GetAllUsers())
                 {
-                    User signedInUser = userManager.SignedInUser as User;
+                    if (user is User)
+                    {
+                        User appUser = user as User;
 
-                    signedInUser.Travels.Remove(selectedTravel);
-
-                    userManager.SignedInUser = signedInUser;
-
-                    
+                        if (appUser.Travels.Contains(selectedTravel))
+                        {
+                            appUser.Travels.Remove(selectedTravel);
+                        }
+                    }
                 }
 
-                UpdateUI();
-                UpdateTravelsList();
+                travelManager.AllTravels.Remove(selectedTravel);
+
             }
             else
             {
-                MessageBox.Show("Please select a travel first!");
+                MessageBox.Show("You need to pick a travel");
             }
+            UpdateTravelsList();
+
+
+            
+
         }
 
         private void btnInfo_Click(object sender, RoutedEventArgs e)
